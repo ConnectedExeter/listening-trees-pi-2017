@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title>Websocket Test</title>
+    
+  </head>
+  <body>
+  <button onclick="send()">Ping</button>
+  <hr>
+  <div id="log"></div>
+  <script language="JavaScript">
+
+  function url(s) {
+    var l = window.location;
+    return ((l.protocol === "https:") ? "wss://" : "ws://") + l.hostname + (((l.port != 80) && (l.port != 443)) ? ":" + l.port : "") + l.pathname + s;
+  }
+  var connection = new WebSocket(url('socket'));
+
+  connection.onopen = function(){
+  	log('Connection open!');
+  }
+
+  connection.onmessage = function(e){
+     var server_message = e.data;
+     log(server_message);
+  }
+  
+  
+  function log(message) {
+    document.getElementById('log').innerHTML = message + "<br>" + document.getElementById('log').innerHTML
+  };
+  function send(){
+	connection.send('ping');
+  };
+  
+  
+  </script>
+  </body>
+</html>
+
+
