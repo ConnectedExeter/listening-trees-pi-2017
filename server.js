@@ -20,9 +20,13 @@ var server = require(isUseHTTPs ? 'https' : 'http');
 
 function cmd_exec(cmd, args, cb_stdout, cb_end) {
         console.log("spawing...");
+        try{
         var spawn = require('child_process').spawn,
             child = spawn(cmd, args),
             me = this;
+        }catch(e){
+          console.log(e);
+        }
         me.exit = 0;
         me.stdout = "";
         child.stdout.on('data', function(data) {
