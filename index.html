@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Listening Trees status</title>
+
+    <!-- Bootstrap -->
+    <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="libs/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="libs/d3.v3.min.js" charset="utf-8"></script>
+
+    <h2>Listening Trees status</h2>
+    <hr>
+    <a target="_blank" href="bench.html">Virtual bench</a>
+    <hr>
+    <h3>Benches</h3>
+    <div id="tags">
+    </div>
+    <hr>
+    <h3>Live Conversations</h3>
+    <div id="sessions">
+    </div>  
+     <script>
+      function tabulate(data, columns) {
+                $('#tags').empty();
+		var table = d3.select('#tags').append('table');
+                table.classed('table', true);
+		var thead = table.append('thead');
+		var tbody = table.append('tbody');
+
+		// append the header row
+		thead.append('tr')
+		  .selectAll('th')
+		  .data(columns).enter()
+		  .append('th')
+		    .text(function (column) { return column; });
+
+		// create a row for each object in the data
+		var rows = tbody.selectAll('tr')
+		  .data(data)
+		  .enter()
+		  .append('tr');
+
+		// create a cell in each row for each column
+		var cells = rows.selectAll('td')
+		  .data(function (row) {
+		    return columns.map(function (column) {
+		      return {column: column, value: row[column]};
+		    });
+		  })
+		  .enter()
+		  .append('td')
+		    .text(function (d) { return d.value; });
+
+	  return table;
+	}
+
+
+      function show_tag_data( data ){
+        var rows = [];
+        for(var d in data){
+         r = {id:data[d].id};
+         if(data[d].prob) r["prob"] = Number(data[d].prob).toFixed(1);
+         if(data[d].session) r["session"] = data[d].session;
+         rows.push( r );
+        }
+        console.log("tag data", rows);
+        tabulate(rows, ['id', 'prob', 'session']);
+      }
+    </script>
+
+    <script>
+      var driftTimer = setInterval(()=>{
+      $.ajax({
+        method: 'GET',
+        url: '/time'
+      })
+      .done((data)=>{
+        var now = new Date();
+        var serverDate = new Date(data);
+        serverOffset = serverDate.getTime() - now.getTime();
+        serverConnection();
+      // NB expect server time to be 30ms to 40ms behind, due to
+      // time to make request.
+      })
+      .fail((data,error)=>{
+          noConnection();
+      });
+      }, 5000);
+
+      var tagTime =  setInterval(()=>{
+      $.ajax({
+        method: 'GET',
+        url: '/benchinfo'
+      })
+      .done((data)=>{
+         console.log("data", data);
+         show_tag_data(data);
+         for(var bench in data){
+           console.log("bench", data[bench]);
+         }
+      });
+    }, 5000);
+
+      $(document).ready(()=>{
+        //$('#hostname').val("fetching hostname...");
+        $.ajax({
+          method: 'GET',
+          url: '/gethostname'
+        })
+        .done((data)=>{
+          //$('#hostname').val(data);
+        });
+      });
+    </script>
+
+  </body>
+</html>
