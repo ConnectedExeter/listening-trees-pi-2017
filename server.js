@@ -106,6 +106,32 @@ function serverHandler(request, response) {
   });
 }
 
+const spawn = require('child_process').spawn;
+
+function spawn_browser(){
+  browser = spawn('/usr/bin/chromium-browser', ['','',''],
+    {cwd:'/home/pi/listening-trees-pi-2017',
+     shell:true,
+     stdio:['pipe','pipe','pipe']});
+
+  browser.on('error', function(err) {
+        console.log('spawn_browser. ' + err);
+     });
+
+  browser.on('close', (code) => {
+        console.log(`browser child process exited with code ${code}`);
+  });
+
+  browser.stderr.on('data', (data) => {
+        console.log(`browser stderr: ${data}`);
+  });
+
+  browser.stdio[1].on('data', (data) => {
+    console.log(`browser stdout: ${data}`);
+  });
+}
+
+spawn_browser();
 
 var app;
 
