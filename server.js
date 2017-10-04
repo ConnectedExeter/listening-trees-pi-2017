@@ -43,6 +43,7 @@ function serverHandler(request, response) {
   if (uri == '/pistate') {
                 response.setHeader('Content-Type', 'application/json');
                 response.setHeader('Cache-Control', 'no-cache, no-store');
+                try{
                 foo = new cmd_exec('dig', ['+short', 'myip.opendns.com', '@resolver1.opendns.com'],
                    function(me, data) {
                       var ip = data.toString().trim();
@@ -52,6 +53,10 @@ function serverHandler(request, response) {
                       response.end(JSON.stringify({pi:"hostname"}));
                   }
                 );
+              }catch(e){
+                console.log(e);
+                response.end();
+              }
                 //response.end(JSON.stringify({pi:"hostname"}));
                 return;
   }else if (uri == '/piset') {
