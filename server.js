@@ -58,7 +58,7 @@ function serverHandler(request, response) {
   var reqURL = url.parse(request.url);
   var uri = reqURL.pathname;
 
-  if (uri == '/pistate') {            
+  if (uri == '/pistate') {
                 foo = new cmd_exec('dig', ['+short', 'myip.opendns.com', '@resolver1.opendns.com'],
                    function(me, data) {
                       var ip = data.toString().trim();
@@ -151,23 +151,6 @@ function runServer() {
 
         var domainURL = (isUseHTTPs ? 'https' : 'http') + '://' + addr.address + ':' + addr.port + '/';
 
-        console.log('------------------------------');
-
-        console.log('socket.io is listening at:');
-        console.log('\x1b[31m%s\x1b[0m ', '\t' + domainURL);
-
-        console.log('\n');
-
-        console.log('Your web-browser (HTML file) MUST set this line:');
-        console.log('\x1b[31m%s\x1b[0m ', 'connection.socketURL = "' + domainURL + '";');
-
-        if (addr.address != 'localhost' && !isUseHTTPs) {
-            console.log('Warning:');
-            console.log('\x1b[31m%s\x1b[0m ', 'Please set isUseHTTPs=true to make sure audio,video and screen demos can work on Google Chrome as well.');
-        }
-
-        console.log('------------------------------');
-        console.log('Need help? http://bit.ly/2ff7QGk');
     });
 }
 
