@@ -157,12 +157,22 @@ function spawn_accel(){
     var rows = `${data}`.split("\n");
     // Likely get 88 or 89 rows per call.
     // No need to process more than 20
+    var maxXYZ = [-100,-100,-100], minXYZ = [100,100,100];
+
     for(var i=1; i < rows.length; i+=4){
       //console.log(rows[i]);
       var vals = rows[i].split(",");
       var x = Number(vals[0]), y = Number(vals[1]), z = Number(vals[4]);
+      if( x > maxXYZ[0]) maxXYZ[0] = x;
+      if( y > maxXYZ[0]) maxXYZ[0] = y;
+      if( z > maxXYZ[0]) maxXYZ[0] = z;
+      if( x < minXYZ[0]) minXYZ[0] = x;
+      if( y < minXYZ[0]) minXYZ[0] = y;
+      if( z < minXYZ[0]) minXYZ[0] = z;
       console.log(`xyz ${x} ${y} ${z}`);
     }
+    console.log("max", maxXYZ);
+    console.log("min", minXYZ);
   });
 }
 
