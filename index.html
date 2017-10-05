@@ -73,7 +73,7 @@ var active_conv = false;
     if(!active_conv){
       console.log("JOINING CONVERSATION");
       active_conv = true;
-      conv_window = Window.open("https://trees.connectedexeter.uk:8443/bench.html");
+      window.location.replace = "https://trees.connectedexeter.uk:8443/bench.html";
     }else{
       console.log("IN A CONVERSATION");
     }
