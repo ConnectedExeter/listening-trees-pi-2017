@@ -178,7 +178,7 @@ function spawn_accel(){
     var triggerXYZ =[];
     triggerXYZ[0] = (10.0 * (maxXYZ[0] - minXYZ[0])).toFixed();
     triggerXYZ[1] = (10.0 * (maxXYZ[1] - minXYZ[1])).toFixed();
-    triggerXYZ[2] = (10.0 * maxXYZ[2] - minXYZ[2])).toFixed();;
+    triggerXYZ[2] = (10.0 * (maxXYZ[2] - minXYZ[2])).toFixed();;
     console.log("trigger", triggerXYZ);
   });
 }
