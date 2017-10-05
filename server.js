@@ -12,6 +12,12 @@ var isUseHTTPs = true;
         cert: fs.readFileSync("./ssl/cert.pem")
     };
 
+var status = {
+  bench: fs.readFileSync("/home/pi/bench_id.txt"),
+}
+
+console.log(`status ${status.bench}`);
+
 // force auto reboot on failures
 var autoRebootServerOnFailure = false;
 
@@ -173,12 +179,13 @@ function spawn_accel(){
       if( z < minXYZ[2]) minXYZ[2] = z;
       //console.log(`xyz ${x} ${y} ${z}`);
     }
-    console.log("max", maxXYZ);
-    console.log("min", minXYZ);
+    //console.log("max", maxXYZ);
+    //console.log("min", minXYZ);
     var triggerXYZ =[];
     triggerXYZ[0] = (10.0 * (maxXYZ[0] - minXYZ[0])).toFixed();
     triggerXYZ[1] = (10.0 * (maxXYZ[1] - minXYZ[1])).toFixed();
     triggerXYZ[2] = (10.0 * (maxXYZ[2] - minXYZ[2])).toFixed();;
+
     console.log("trigger", triggerXYZ);
   });
 }
