@@ -29,7 +29,7 @@
     <hr>
     <h3>Live Conversations</h3>
     <div id="sessions">
-    </div>  
+    </div>
      <script>
       function tabulate(data, columns) {
                 $('#tags').empty();
@@ -83,12 +83,13 @@
       var driftTimer = setInterval(()=>{
       $.ajax({
         method: 'GET',
-        url: '/time'
+        url: '/pistate'
       })
       .done((data)=>{
-        var now = new Date();
-        var serverDate = new Date(data);
-        serverOffset = serverDate.getTime() - now.getTime();
+        console.log('pistate', data);
+        //var now = new Date();
+        //var serverDate = new Date(data);
+        //serverOffset = serverDate.getTime() - now.getTime();
         serverConnection();
       // NB expect server time to be 30ms to 40ms behind, due to
       // time to make request.
