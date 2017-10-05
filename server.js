@@ -160,7 +160,7 @@ function spawn_accel(){
     // No need to process more than 100
     //for(var i=0; i < data.length; i+=40){
     //  console.log(data[i]);
-    }
+    //}
   });
 }
 
