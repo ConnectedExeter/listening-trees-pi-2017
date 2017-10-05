@@ -82,7 +82,8 @@ function serverHandler(request, response) {
                 */
                 response.setHeader('Content-Type', 'application/json');
                 response.setHeader('Cache-Control', 'no-cache, no-store');
-                response.end(JSON.stringify([]));
+                status.now = Date.now();
+                response.end(JSON.stringify(status));
                 return;
   }else if (uri == '/piset') {
                 var query = queryString.parse( reqURL.query );
