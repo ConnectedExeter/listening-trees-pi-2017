@@ -87,8 +87,8 @@
       })
       .done((data)=>{
         console.log('pistate', data);
-        var last_trig = data.trigger - data.now;
-        console.log('last_trig', last_trig); 
+        var last_trig = (data.now - data.trigger) / 1000;
+        console.log('last_trig', last_trig);
       })
       .fail((data,error)=>{
           noConnection();
