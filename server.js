@@ -156,11 +156,11 @@ function spawn_accel(){
   accel.stdio[1].on('data', (data) => {
     var rows = `${data}`.split("\n");
     console.log(`accel stdout: rows`, rows.length); //${data}`);
-    // Likely get 4096 rows per call.
-    // No need to process more than 100
-    //for(var i=0; i < data.length; i+=40){
-    //  console.log(data[i]);
-    //}
+    // Likely get 88 or 89 rows per call.
+    // No need to process more than 20
+    for(var i=1; i < rows.length; i+=4){
+      console.log(rows[i]);
+    }
   });
 }
 
