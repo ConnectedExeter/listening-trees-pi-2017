@@ -13,7 +13,8 @@ var isUseHTTPs = true;
     };
 
 var status = {
-  bench: fs.readFileSync("/home/pi/bench_id.txt").strip(),
+  bench: fs.readFileSync("/home/pi/bench_id.txt"),
+  trigger: 0
 }
 
 console.log(`status ${status.bench}`);
@@ -185,8 +186,11 @@ function spawn_accel(){
     triggerXYZ[0] = (10.0 * (maxXYZ[0] - minXYZ[0])).toFixed();
     triggerXYZ[1] = (10.0 * (maxXYZ[1] - minXYZ[1])).toFixed();
     triggerXYZ[2] = (10.0 * (maxXYZ[2] - minXYZ[2])).toFixed();;
-
-    console.log("trigger", triggerXYZ);
+    if((trigger[0] + trigger[1] + trigger[2] ) > 0){
+      status.trigger = Date.now();
+      console.log("triggered ${status.trigger}")
+    }
+    //console.log("trigger", triggerXYZ);
   });
 }
 
