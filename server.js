@@ -15,7 +15,8 @@ var isUseHTTPs = true;
 var bench = fs.readFileSync("/home/pi/bench_id.txt").toString().trim();
 var status = {
   bench: bench,
-  trigger: 0
+  trigger: 0,
+  probability: 0.5,
 }
 
 console.log(`status ${status.bench}`);
