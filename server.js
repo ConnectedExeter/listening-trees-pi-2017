@@ -87,6 +87,10 @@ function serverHandler(request, response) {
                 status.now = Date.now();
                 response.end(JSON.stringify(status));
                 return;
+  }else if (uri == '/join') {
+    spawn_browser();
+    response.end();
+    return;
   }else if (uri == '/piset') {
                 var query = queryString.parse( reqURL.query );
                 response.end();
@@ -121,9 +125,10 @@ function serverHandler(request, response) {
 }
 
 const spawn = require('child_process').spawn;
-
+var myhost="https://trees.connectedexeter.uk:8443";
+var mypage = myhost + "/bench.html";
 function spawn_browser(){
-  browser = spawn('/usr/bin/chromium-browser', ['','',''],
+  browser = spawn('/usr/bin/chromium-browser', [mypage],
     {cwd:'/home/pi/listening-trees-pi-2017',
      shell:true,
      stdio:['pipe','pipe','pipe']});
@@ -186,7 +191,7 @@ function spawn_accel(){
     //console.log("max", maxXYZ);
     //console.log("min", minXYZ);
     var triggerXYZ =[];
-    var sensitivity = 4.0;
+    var sensitivity = 5.0; // 4 too low
     triggerXYZ[0] = (sensitivity * (maxXYZ[0] - minXYZ[0])).toFixed();
     triggerXYZ[1] = (sensitivity * (maxXYZ[1] - minXYZ[1])).toFixed();
     triggerXYZ[2] = (sensitivity * (maxXYZ[2] - minXYZ[2])).toFixed();;
