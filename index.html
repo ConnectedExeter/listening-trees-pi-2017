@@ -66,17 +66,15 @@
 	}
 
 
-      function show_tag_data( data ){
-        var rows = [];
-        for(var d in data){
-         r = {id:data[d].id};
-         if(data[d].prob) r["prob"] = Number(data[d].prob).toFixed(1);
-         if(data[d].session) r["session"] = data[d].session;
-         rows.push( r );
-        }
-        console.log("tag data", rows);
-        tabulate(rows, ['id', 'prob', 'session']);
-      }
+  function join_conversation(){
+      console.log("JOINING CONVERSATION")
+  }
+
+  function leave_conversation(){
+      console.log("LEAVING CONVERSATION")
+  }
+
+
     </script>
 
     <script>
@@ -89,6 +87,12 @@
         console.log('pistate', data);
         var last_trig = (data.now - data.trigger) / 1000;
         console.log('last_trig', last_trig);
+        if(last_trig < 30){
+          join_conversation();
+        }
+        if(last_trig > 60){
+          leave_conversation();
+        }
       })
       .fail((data,error)=>{
           noConnection();
