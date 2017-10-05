@@ -66,12 +66,23 @@
 	}
 
 
+var conv_window;
+var active_conv = false;
+
   function join_conversation(){
-      console.log("JOINING CONVERSATION")
+    if(!active_conv){
+      console.log("JOINING CONVERSATION");
+      active_conv = true;
+      conv_window = window.open("https://trees.connectedexeter.uk:8443/bench.html");
+    }else{
+      console.log("IN A CONVERSATION");
+    }
   }
 
   function leave_conversation(){
-      console.log("LEAVING CONVERSATION")
+      console.log("LEAVING CONVERSATION");
+      active_conv = false;
+      conv_window.close();
   }
 
 
