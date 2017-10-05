@@ -135,7 +135,32 @@ function spawn_browser(){
   });
 }
 
+function spawn_accel(){
+  accel = spawn('/home/pi/listening-trees-pi-2017/accel_stream', ['','',''],
+    {cwd:'/home/pi/listening-trees-pi-2017',
+     shell:true,
+     stdio:['pipe','pipe','pipe']});
+
+  accel.on('error', function(err) {
+        console.log('spawn_accel. ' + err);
+     });
+
+  accel.on('close', (code) => {
+        console.log(`accel_stream child process exited with code ${code}`);
+  });
+
+  accel.stderr.on('data', (data) => {
+        console.log(`accel stderr: ${data}`);
+  });
+
+  accel.stdio[1].on('data', (data) => {
+    console.log(`accel stdout: ${data}`);
+  });
+}
+
+spawn_accel();
 spawn_browser();
+
 
 var app;
 
@@ -167,8 +192,6 @@ function runServer() {
                     me.exit = 1;
                 }
             );
-
-            setTimeout(log_console, 250);
         }
     });
 
