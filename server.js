@@ -154,7 +154,8 @@ function spawn_accel(){
   });
 
   accel.stdio[1].on('data', (data) => {
-    console.log(`accel stdout: MANY ROWS`); //${data}`);
+    var rows = data.split('\n');
+    console.log(`accel stdout: rows`, rows.length); //${data}`);
   });
 }
 
