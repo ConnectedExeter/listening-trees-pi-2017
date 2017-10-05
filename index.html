@@ -73,7 +73,16 @@ var active_conv = false;
     if(!active_conv){
       console.log("JOINING CONVERSATION");
       active_conv = true;
-      window.location.replace = "https://trees.connectedexeter.uk:8443/bench.html";
+      $.ajax({
+        method: 'GET',
+        url: '/join'
+      })
+      .done((data)=>{
+        console.log('joining', data);
+      })
+      .fail((data,error)=>{
+        console.log('join failed');
+      });
     }else{
       console.log("IN A CONVERSATION");
     }
@@ -82,7 +91,6 @@ var active_conv = false;
   function leave_conversation(){
       console.log("LEAVING CONVERSATION");
       active_conv = false;
-      if(conv_window) conv_window.close();
   }
 
 
