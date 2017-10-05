@@ -112,10 +112,10 @@ var active_conv = false;
         console.log('pistate', data);
         var last_trig = (data.now - data.trigger) / 1000;
         console.log('last_trig', last_trig);
-        if(last_trig < 5 ){
+        if(last_trig < 20 ){
           join_conversation();
         }
-        if(last_trig > 10){
+        if(last_trig > 20){
           leave_conversation();
         }
       })
