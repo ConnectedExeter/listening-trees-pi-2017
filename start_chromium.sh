@@ -17,4 +17,5 @@ rm /home/pi/.config/chromium/SingletonLock
 sleep 1
 
 # run the browser
-/usr/bin/chromium-browser ${extra_opts} ${options} ${myhost}/listeningtrees/bench.html?roomid=b1 &
+#/usr/bin/chromium-browser ${extra_opts} ${options} ${myhost}/listeningtrees/bench.html?roomid=b1 &
+/usr/bin/chromium-browser ${extra_opts} ${options} https://localhost:8443 &
