@@ -195,7 +195,7 @@ function spawn_accel(){
     //console.log("max", maxXYZ);
     //console.log("min", minXYZ);
     var triggerXYZ =[];
-    var sensitivity = 5.0; // 4 too low
+    var sensitivity = 7.0; // 5 too low
     triggerXYZ[0] = (sensitivity * (maxXYZ[0] - minXYZ[0])).toFixed();
     triggerXYZ[1] = (sensitivity * (maxXYZ[1] - minXYZ[1])).toFixed();
     triggerXYZ[2] = (sensitivity * (maxXYZ[2] - minXYZ[2])).toFixed();;
