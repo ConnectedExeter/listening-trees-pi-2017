@@ -70,11 +70,12 @@ var conv_window;
 var active_conv = false;
 
   function join_conversation(){
+    var roomid="b1";
     if(!active_conv){
       console.log("JOINING CONVERSATION");
       active_conv = true;
       var myhost="https://trees.connectedexeter.uk:8443";
-      var mypage = myhost + "/listeningtrees/bench.html";
+      var mypage = myhost + "/listeningtrees/bench.html?roomid=" + roomid;
       conv_window = window.open( mypage );
       /*
       $.ajax({
