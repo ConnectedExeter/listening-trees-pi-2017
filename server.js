@@ -84,6 +84,7 @@ function serverHandler(request, response) {
                 */
                 response.setHeader('Content-Type', 'application/json');
                 response.setHeader('Cache-Control', 'no-cache, no-store');
+                response.setHeader('Access-Control-Allow-Origin', '*');
                 status.now = Date.now();
                 response.end(JSON.stringify(status));
                 return;
