@@ -164,11 +164,11 @@ function spawn_accel(){
       var vals = rows[i].split(",");
       var x = Number(vals[0]), y = Number(vals[1]), z = Number(vals[4]);
       if( x > maxXYZ[0]) maxXYZ[0] = x;
-      if( y > maxXYZ[0]) maxXYZ[0] = y;
-      if( z > maxXYZ[0]) maxXYZ[0] = z;
+      if( y > maxXYZ[1]) maxXYZ[1] = y;
+      if( z > maxXYZ[2]) maxXYZ[2] = z;
       if( x < minXYZ[0]) minXYZ[0] = x;
-      if( y < minXYZ[0]) minXYZ[0] = y;
-      if( z < minXYZ[0]) minXYZ[0] = z;
+      if( y < minXYZ[1]) minXYZ[1] = y;
+      if( z < minXYZ[2]) minXYZ[2] = z;
       console.log(`xyz ${x} ${y} ${z}`);
     }
     console.log("max", maxXYZ);
