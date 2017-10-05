@@ -87,12 +87,8 @@
       })
       .done((data)=>{
         console.log('pistate', data);
-        //var now = new Date();
-        //var serverDate = new Date(data);
-        //serverOffset = serverDate.getTime() - now.getTime();
-        serverConnection();
-      // NB expect server time to be 30ms to 40ms behind, due to
-      // time to make request.
+        var last_trig = data.trigger - data.now;
+        console.log('last_trig', last_trig); 
       })
       .fail((data,error)=>{
           noConnection();
