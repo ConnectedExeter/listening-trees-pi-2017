@@ -87,17 +87,17 @@
         console.log('pistate', data);
         var last_trig = (data.now - data.trigger) / 1000;
         console.log('last_trig', last_trig);
-        if(last_trig < 30){
+        if(last_trig < 20 ){
           join_conversation();
         }
-        if(last_trig > 60){
+        if(last_trig > 25){
           leave_conversation();
         }
       })
       .fail((data,error)=>{
           noConnection();
       });
-      }, 5000);
+    }, 1000);
 
 /*
       $(document).ready(()=>{
