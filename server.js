@@ -155,11 +155,13 @@ function spawn_accel(){
 
   accel.stdio[1].on('data', (data) => {
     var rows = `${data}`.split("\n");
-    console.log(`accel stdout: rows`, rows.length); //${data}`);
     // Likely get 88 or 89 rows per call.
     // No need to process more than 20
     for(var i=1; i < rows.length; i+=4){
-      console.log(rows[i]);
+      //console.log(rows[i]);
+      var vals = rows[i].split(",");
+      var x = Number(vals[0], y = Number(vals[1]), z = Number(vals[4]);
+      console.log(`xyz ${x} ${y} ${z}`);
     }
   });
 }
