@@ -188,7 +188,7 @@ function spawn_accel(){
     triggerXYZ[2] = (10.0 * (maxXYZ[2] - minXYZ[2])).toFixed();;
     if((triggerXYZ[0] + triggerXYZ[1] + triggerXYZ[2] ) > 0){
       status.trigger = Date.now();
-      console.log("triggered ${status.trigger}")
+      console.log(`triggered ${status.trigger}`)
     }
     //console.log("trigger", triggerXYZ);
   });
