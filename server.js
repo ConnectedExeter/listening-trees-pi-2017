@@ -13,7 +13,7 @@ var isUseHTTPs = true;
     };
 
 var status = {
-  bench: fs.readFileSync("/home/pi/bench_id.txt"),
+  bench: fs.readFileSync("/home/pi/bench_id.txt").toString(),
   trigger: 0
 }
 
