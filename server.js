@@ -12,8 +12,9 @@ var isUseHTTPs = true;
         cert: fs.readFileSync("./ssl/cert.pem")
     };
 
+var bench = fs.readFileSync("/home/pi/bench_id.txt").toString().trim();
 var status = {
-  bench: fs.readFileSync("/home/pi/bench_id.txt").toString().strip(),
+  bench: bench,
   trigger: 0
 }
 
