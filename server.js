@@ -135,6 +135,8 @@ function spawn_browser(){
   });
 }
 
+var maxXYZ = [], minXYZ =[];
+
 function spawn_accel(){
   accel = spawn('/home/pi/listening-trees-pi-2017/accel_stream', ['','',''],
     {cwd:'/home/pi/listening-trees-pi-2017',
@@ -157,7 +159,7 @@ function spawn_accel(){
     var rows = `${data}`.split("\n");
     // Likely get 88 or 89 rows per call.
     // No need to process more than 20
-    var maxXYZ = [-100,-100,-100], minXYZ = [100,100,100];
+    maxXYZ = [-100,-100,-100], minXYZ = [100,100,100];
 
     for(var i=1; i < rows.length; i+=4){
       //console.log(rows[i]);
@@ -169,10 +171,15 @@ function spawn_accel(){
       if( x < minXYZ[0]) minXYZ[0] = x;
       if( y < minXYZ[1]) minXYZ[1] = y;
       if( z < minXYZ[2]) minXYZ[2] = z;
-      console.log(`xyz ${x} ${y} ${z}`);
+      //console.log(`xyz ${x} ${y} ${z}`);
     }
     console.log("max", maxXYZ);
     console.log("min", minXYZ);
+    var triggerXYZ =[];
+    triggerXYZ[0] = maxXYZ[0] - minXYZ[0];
+    triggerXYZ[1] = maxXYZ[1] - minXYZ[1];
+    triggerXYZ[2] = maxXYZ[2] - minXYZ[2];
+    console.log("trigger", triggerXYZ);
   });
 }
 
