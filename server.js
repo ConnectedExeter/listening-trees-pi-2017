@@ -198,7 +198,8 @@ function spawn_accel(){
 }
 
 spawn_accel();
-spawn_browser();
+
+//spawn_browser();
 
 
 var app;
