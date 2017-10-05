@@ -99,30 +99,17 @@
       });
       }, 5000);
 
-      var tagTime =  setInterval(()=>{
-      $.ajax({
-        method: 'GET',
-        url: '/benchinfo'
-      })
-      .done((data)=>{
-         console.log("data", data);
-         show_tag_data(data);
-         for(var bench in data){
-           console.log("bench", data[bench]);
-         }
-      });
-    }, 5000);
-
+/*
       $(document).ready(()=>{
-        //$('#hostname').val("fetching hostname...");
         $.ajax({
           method: 'GET',
-          url: '/gethostname'
+          url: '/begining'
         })
         .done((data)=>{
           //$('#hostname').val(data);
         });
       });
+*/
     </script>
 
   </body>
