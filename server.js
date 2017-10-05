@@ -88,7 +88,10 @@ function serverHandler(request, response) {
                 response.end(JSON.stringify(status));
                 return;
   }else if (uri == '/join') {
-    spawn_browser();
+    var myhost="https://trees.connectedexeter.uk:8443/listeningtrees/bench.html";
+    response.writeHead(301,
+     {Location: myhost}
+    );
     response.end();
     return;
   }else if (uri == '/piset') {
@@ -126,7 +129,7 @@ function serverHandler(request, response) {
 
 const spawn = require('child_process').spawn;
 var myhost="https://trees.connectedexeter.uk:8443";
-var mypage = myhost + "/bench.html";
+var mypage = myhost + "/listeningtrees/bench.html";
 function spawn_browser(){
   browser = spawn('/usr/bin/chromium-browser', [mypage],
     {cwd:'/home/pi/listening-trees-pi-2017',
