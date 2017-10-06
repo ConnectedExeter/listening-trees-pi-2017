@@ -106,12 +106,14 @@ var active_conv = false;
     </script>
 
     <script>
+      var status;
       var driftTimer = setInterval(()=>{
       $.ajax({
         method: 'GET',
         url: '/pistate'
       })
       .done((data)=>{
+        status = data;
         console.log('pistate', data);
         var last_trig = (data.now - data.trigger) / 1000;
         console.log('last_trig', last_trig);
@@ -128,11 +130,12 @@ var active_conv = false;
     }, 1000);
 
     var aliveTimer = setInterval(()=>{
+    status.time = status.now;  
     $.ajax({
       method: 'GET',
       crossDomain: true,
       url: 'https://trees.connectedexeter.uk:8443/benchstatus',
-      data: {id:'hello',time:Date.now()}
+      data: status
     })
     .done((data)=>{
       console.log('alive sent');
