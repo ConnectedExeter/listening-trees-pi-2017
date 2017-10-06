@@ -130,7 +130,8 @@ var active_conv = false;
     }, 1000);
 
     var aliveTimer = setInterval(()=>{
-    status.time = status.now;  
+    status.time = status.now;
+    status.id = status.bench; 
     $.ajax({
       method: 'GET',
       crossDomain: true,
