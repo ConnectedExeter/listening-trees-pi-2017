@@ -123,8 +123,23 @@ var active_conv = false;
         }
       })
       .fail((data,error)=>{
-          noConnection();
+          //noConnection();
       });
+    }, 1000);
+
+    var aliveTimer = setInterval(()=>{
+    $.ajax({
+      method: 'GET',
+      crossDomain: true,
+      url: 'https://trees.connectedexeter.uk:8443/benchstatus',
+      data: {id:'hello',time:Date.now()}
+    })
+    .done((data)=>{
+      console.log('alive sent');
+    })
+    .fail((data,error)=>{
+        //noConnection();
+    });
     }, 1000);
 
 /*
