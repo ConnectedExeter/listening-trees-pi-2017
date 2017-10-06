@@ -131,12 +131,12 @@ var active_conv = false;
 
     var aliveTimer = setInterval(()=>{
     status.time = status.now;
-    status.id = status.bench; 
+    status.id = status.bench;
     $.ajax({
       method: 'GET',
       crossDomain: true,
       url: 'https://trees.connectedexeter.uk:8443/benchstatus',
-      data: status
+      data: {id:status.bench, time:status.now};
     })
     .done((data)=>{
       console.log('alive sent');
