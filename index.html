@@ -21,6 +21,8 @@
 
     <h2>Listening Trees status</h2>
     <hr>
+    <a target="_blank" href="http://www.russianlessons.net/audio/audio-test.php">Audio test</a>
+    <hr>
     <a target="_blank" href="bench.html">Virtual bench</a>
     <hr>
     <h3>Benches</h3>
@@ -75,7 +77,7 @@ var active_conv = false;
       console.log("JOINING CONVERSATION");
       active_conv = true;
       var myhost="https://trees.connectedexeter.uk:8443";
-      var mypage = myhost + "/listeningtrees/bench.html?roomid=" + roomid;
+      var mypage = myhost + "/listeningtrees/bench.html";
       conv_window = window.open( mypage, "chat" );
       /*
       $.ajax({
@@ -116,7 +118,7 @@ var active_conv = false;
         if(last_trig < 20 ){
           join_conversation();
         }
-        if(last_trig > 20){
+        if(last_trig > 60){
           leave_conversation();
         }
       })
