@@ -68,20 +68,8 @@ function serverHandler(request, response) {
   var uri = reqURL.pathname;
 
   if (uri == '/pistate') {
-                /*foo = new cmd_exec('dig', ['+short', 'myip.opendns.com', '@resolver1.opendns.com'],
-                   function(me, data) {
-                      var ip = data.toString().trim();
-                      response.setHeader('Content-Type', 'application/json');
-                      response.setHeader('Cache-Control', 'no-cache, no-store');
-                      response.end(JSON.stringify([{ip:ip}]));
-                    },
-                    function(me) {
-                      response.setHeader('Content-Type', 'application/json');
-                      response.setHeader('Cache-Control', 'no-cache, no-store');
-                      response.end(JSON.stringify([]));
-                  }
-                );
-                */
+                var query = queryString.parse( reqURL.query );
+                status.roomid = query['roomid'];
                 response.setHeader('Content-Type', 'application/json');
                 response.setHeader('Cache-Control', 'no-cache, no-store');
                 response.setHeader('Access-Control-Allow-Origin', '*');
