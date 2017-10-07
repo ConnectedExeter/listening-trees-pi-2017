@@ -107,14 +107,16 @@ var active_conv = false;
 
     <script>
       var status;
+      var bench = "waiting...";
       var driftTimer = setInterval(()=>{
       $.ajax({
         method: 'GET',
         url: '/pistate'
       })
       .done((data)=>{
+        bench = data.bench;
         status = {id:data.bench, time:data.now};
-        console.log('pistate data', data.bench);
+        console.log('pistate data', data);
         console.log('pistate status', status);
         var last_trig = (data.now - data.trigger) / 1000;
         console.log('last_trig', last_trig);
