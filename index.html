@@ -136,7 +136,7 @@ var active_conv = false;
     $.ajax({
       method: 'GET',
       crossDomain: true,
-      url: 'https://trees.connectedexeter.uk:8443/benchstatus?id='+status.bench+'&time='+status.now
+      url: 'https://trees.connectedexeter.uk:8443/benchstatus?id='+bench+'&time='+Date.now()
     })
     .done((data)=>{
       console.log('alive sent');
