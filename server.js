@@ -69,7 +69,7 @@ function serverHandler(request, response) {
 
   if (uri == '/pistate') {
                 var query = queryString.parse( reqURL.query );
-                status.roomid = query['roomid'];
+                if(query['roomid']){ status.roomid = query['roomid']; }
                 console.log("pistate", status);
                 response.setHeader('Content-Type', 'application/json');
                 response.setHeader('Cache-Control', 'no-cache, no-store');
