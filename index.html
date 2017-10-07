@@ -134,10 +134,14 @@ var active_conv = false;
     }, 1000);
 
     var aliveTimer = setInterval(()=>{
+      var url = 'https://trees.connectedexeter.uk:8443/benchstatus?id='+bench+'&role='+role+'&time='+Date.now()
+      if(status['roomid']) && (role == 'join'){
+        url += '&roomid=' + status['roomid'];
+      }
     $.ajax({
       method: 'GET',
       crossDomain: true,
-      url: 'https://trees.connectedexeter.uk:8443/benchstatus?id='+bench+'&role='+role+'&time='+Date.now()
+      url: url
     })
     .done((data)=>{
       //console.log('alive sent');
