@@ -72,7 +72,6 @@ var conv_window;
 var active_conv = false;
 
   function join_conversation(){
-    var roomid="b1";
     if(!active_conv){
       console.log("JOINING CONVERSATION");
       active_conv = true;
@@ -108,6 +107,7 @@ var active_conv = false;
     <script>
       var bench = "";
       var role = "";
+      var roomid = "";
       var driftTimer = setInterval(()=>{
       $.ajax({
         method: 'GET',
@@ -115,6 +115,7 @@ var active_conv = false;
       })
       .done((data)=>{
         bench = data.bench;
+        roomid = data.roomid;
         console.log('pistate data', data);
         var last_trig = (data.now - data.trigger) / 1000;
         console.log('last_trig', last_trig);
@@ -135,7 +136,7 @@ var active_conv = false;
     var aliveTimer = setInterval(()=>{
       var url = 'https://trees.connectedexeter.uk:8443/benchstatus?id='+bench+'&role='+role+'&time='+Date.now();
       //if((status['roomid']) && (role == 'join')){
-        url += '&roomid=' + status['roomid'];
+        url += '&roomid=' + roomid;
       //}
       console.log('alive url', url);
     $.ajax({
