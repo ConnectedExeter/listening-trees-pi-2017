@@ -70,6 +70,7 @@ function serverHandler(request, response) {
   if (uri == '/pistate') {
                 var query = queryString.parse( reqURL.query );
                 status.roomid = query['roomid'];
+                console.log("pistate", status.roomid);
                 response.setHeader('Content-Type', 'application/json');
                 response.setHeader('Cache-Control', 'no-cache, no-store');
                 response.setHeader('Access-Control-Allow-Origin', '*');
