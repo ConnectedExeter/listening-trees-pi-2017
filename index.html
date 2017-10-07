@@ -106,8 +106,8 @@ var active_conv = false;
     </script>
 
     <script>
-      var status;
-      var bench = "waiting...";
+      var bench = "";
+      var role = "";
       var driftTimer = setInterval(()=>{
       $.ajax({
         method: 'GET',
@@ -115,15 +115,16 @@ var active_conv = false;
       })
       .done((data)=>{
         bench = data.bench;
-        status = {id:data.bench, time:data.now};
         console.log('pistate data', data);
         console.log('pistate status', status);
         var last_trig = (data.now - data.trigger) / 1000;
         console.log('last_trig', last_trig);
         if(last_trig < 20 ){
+          role = "join";
           join_conversation();
         }
         if(last_trig > 60){
+          role = "leave";
           leave_conversation();
         }
       })
@@ -136,10 +137,10 @@ var active_conv = false;
     $.ajax({
       method: 'GET',
       crossDomain: true,
-      url: 'https://trees.connectedexeter.uk:8443/benchstatus?id='+bench+'&time='+Date.now()
+      url: 'https://trees.connectedexeter.uk:8443/benchstatus?id='+bench+'&role='+role+'&time='+Date.now()
     })
     .done((data)=>{
-      console.log('alive sent');
+      //console.log('alive sent');
     })
     .fail((data,error)=>{
         //noConnection();
