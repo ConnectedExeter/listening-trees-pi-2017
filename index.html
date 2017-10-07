@@ -133,10 +133,10 @@ var active_conv = false;
     }, 1000);
 
     var aliveTimer = setInterval(()=>{
-      var url = 'https://trees.connectedexeter.uk:8443/benchstatus?id='+bench+'&role='+role+'&time='+Date.now()
-      if((status['roomid']) && (role == 'join')){
+      var url = 'https://trees.connectedexeter.uk:8443/benchstatus?id='+bench+'&role='+role+'&time='+Date.now();
+      //if((status['roomid']) && (role == 'join')){
         url += '&roomid=' + status['roomid'];
-      }
+      //}
       console.log('alive url', url);
     $.ajax({
       method: 'GET',
