@@ -114,7 +114,7 @@ var active_conv = false;
       })
       .done((data)=>{
         status = data;
-        console.log('pistate', data);
+        console.log('pistate', status);
         var last_trig = (data.now - data.trigger) / 1000;
         console.log('last_trig', last_trig);
         if(last_trig < 20 ){
