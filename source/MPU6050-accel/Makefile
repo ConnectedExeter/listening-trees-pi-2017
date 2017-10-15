@@ -16,7 +16,8 @@ D3D_OBJS = main_3d.o demo_3d.o
 # MPU6050_6Axis_MotionApps20.h for details.
 
 #CXXFLAGS = -DDMP_FIFO_RATE=9 -Wall -g -O2 `pkg-config gtkmm-3.0 --cflags --libs`
-CXXFLAGS = -DDMP_FIFO_RATE=1 -Wall -g -O2 `pkg-config gtkmm-3.0 --cflags --libs`
+#CXXFLAGS = -DDMP_FIFO_RATE=1 -Wall -g -O2 `pkg-config gtkmm-3.0 --cflags --libs`
+CXXFLAGS = -DDMP_FIFO_RATE=1 -Wall -g -O2
 
 $(CMN_OBJS) $(DMP_OBJS) $(RAW_OBJS) : $(HDRS)
 
